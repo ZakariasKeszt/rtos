@@ -1,0 +1,21 @@
+// stm32f756.repl
+
+cpu: CPU.CortexM @ sysbus
+    cpuType: "cortex-m7"
+    nvic: nvic
+
+nvic: IRQControllers.NVIC @ sysbus 0xE000E000
+    IRQ -> cpu@0
+
+flash: Memory.MappedMemory @ sysbus 0x08000000
+    size: 0x00100000
+
+sram1: Memory.MappedMemory @ sysbus 0x20000000
+    size: 0x00050000
+
+usart3: UART.STM32F7_USART @ sysbus 0x40004800
+    frequency: 200000000
+    IRQ -> nvic@39
+
+ethernet: Network.SynopsysEthernetMAC @ sysbus 0x40028000
+    IRQ -> nvic@61

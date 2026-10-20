@@ -1,0 +1,14 @@
+## Virtuális eszköz létrehozása
+mach create "xy"
+
+## Hardware feltöltése
+machine LoadPlatformDescription @xy.repl
+
+## Terminál megnyitása valamihez:
+showAnalyzer sysbus.xy
+
+## Fordított kód feltöltése (ELF FORMÁTUMBAN!!!)
+sysbus LoadELF @xy.elf
+
+## Indítás
+start
